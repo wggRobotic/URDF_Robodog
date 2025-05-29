@@ -1,0 +1,487 @@
+<?xml version="1.0"?>
+
+<robot name="Robodog">
+
+    <material name="red">
+        <color rgba="1 0.0 0.0 1.0"/>
+    </material>
+
+    <material name="green">
+        <color rgba="0.0 0.7 0.0 1.0"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.0 0.0 0.7 1.0"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+    </material>
+
+    <material name="white">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+    </material>
+
+
+    <link name="base_link">
+
+        <visual>
+            <origin xyz="0.0 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.216 0.114 0.075"/>
+            </geometry>
+            <material name="green">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+    <link name="connector_front">
+
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.045 0.02 0.075"/>
+            </geometry>
+            <material name="green">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+    <link name="connector_back">
+
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.045 0.02 0.075"/>
+            </geometry>
+            <material name="green">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+    <link name="head">
+
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.035 0.114 0.075"/>
+            </geometry>
+            <material name="green">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+    <link name="ass">
+
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.035 0.114 0.075"/>
+            </geometry>
+            <material name="green">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+
+    <link name="FR_Servo">
+        <visual>
+         <origin xyz="0.0 -0.01624 0.0" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.0375 0.0527 0.0317"/>
+            </geometry>
+            <material name="red">
+                
+            </material>
+        </visual>
+    </link>
+
+     <link name="BR_Servo">
+        <visual>
+         <origin xyz="0.0 -0.01624 0.0" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.0375 0.0527 0.0317"/>
+            </geometry>
+            <material name="red">
+                
+            </material>
+        </visual>
+    </link>
+
+    <link name="FL_Servo">
+        <visual>
+         <origin xyz="0.0 0.01624 0.0" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.0375 0.0527 0.0317"/>
+            </geometry>
+            <material name="red">
+                
+            </material>
+        </visual>
+    </link>
+
+     <link name="BL_Servo">
+        <visual>
+         <origin xyz="0.0 0.01624 0.0" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.0375 0.0527 0.0317"/>
+            </geometry>
+            <material name="red">
+                
+            </material>
+        </visual>
+    </link>
+
+
+    <link name="FR_upper_leg">
+
+        <visual>
+            <origin xyz="0.0 0.0 -0.05259" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.0297 0.037 0.1254"/>
+            </geometry>
+            <material name="blue">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+
+    <link name="BR_upper_leg">
+
+        <visual>
+            <origin xyz="0.0 0.0 -0.05259" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.0297 0.037 0.1254"/>
+            </geometry>
+            <material name="blue">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+    <link name="FL_upper_leg">
+
+        <visual>
+            <origin xyz="0.0 0.0 -0.05259" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.0297 0.037 0.1254"/>
+            </geometry>
+            <material name="blue">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+    <link name="BL_upper_leg">
+
+        <visual>
+            <origin xyz="0.0 0.0 -0.05259" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.0297 0.037 0.1254"/>
+            </geometry>
+            <material name="blue">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+    <link name="FR_lower_leg">
+
+        <visual>
+            <origin xyz="0.0 0.0 -0.053" rpy="0.0 0.0 0.0"/>
+
+            <geometry>
+                <box size="0.021 0.009487 0.110"/>
+            </geometry>
+            <material name="black">
+                
+            </material>
+        </visual>
+        
+    </link>
+
+    <link name="BR_lower_leg">
+
+            <visual>
+                <origin xyz="0.0 0.0 -0.053" rpy="0.0 0.0 0.0"/>
+
+                <geometry>
+                    <box size="0.021 0.009487 0.110"/>
+                </geometry>
+                <material name="black">
+                    
+                </material>
+            </visual>
+            
+    </link>
+
+    <link name="FL_lower_leg">
+
+            <visual>
+                <origin xyz="0.0 0.0 -0.053" rpy="0.0 0.0 0.0"/>
+
+                <geometry>
+                    <box size="0.021 0.009487 0.110"/>
+                </geometry>
+                <material name="black">
+                    
+                </material>
+            </visual>
+            
+    </link>
+
+    <link name="BL_lower_leg">
+
+            <visual>
+                <origin xyz="0.0 0.0 -0.053" rpy="0.0 0.0 0.0"/>
+
+                <geometry>
+                    <box size="0.021 0.009487 0.110"/>
+                </geometry>
+                <material name="black">
+                    
+                </material>
+            </visual>
+            
+    </link>
+
+    <link name="FR_paw">
+
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+
+                <geometry>
+                   <sphere radius="0.015"/>
+                </geometry>
+                <material name="white">
+                    
+                </material>
+            </visual>
+            
+    </link>
+
+    <link name="BR_paw">
+
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+
+                <geometry>
+                   <sphere radius="0.015"/>
+                </geometry>
+                <material name="white">
+                    
+                </material>
+            </visual>
+            
+    </link>
+
+    <link name="FL_paw">
+
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+
+                <geometry>
+                   <sphere radius="0.015"/>
+                </geometry>
+                <material name="white">
+                    
+                </material>
+            </visual>
+            
+    </link>
+
+    <link name="BL_paw">
+
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+
+                <geometry>
+                   <sphere radius="0.015"/>
+                </geometry>
+                <material name="white">
+                    
+                </material>
+            </visual>
+            
+    </link>
+
+
+
+
+    <joint name="joint_body1" type="fixed">
+        <origin xyz="0.1305 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="connector_front"/>
+    </joint>
+
+   <joint name="joint_body2" type="fixed">
+        <origin xyz="-0.1305 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="connector_back"/>
+    </joint>
+
+
+    <joint name="neck" type="fixed">
+        <origin xyz=" 0.04 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="connector_front"/>
+        <child link="head"/>
+    </joint>
+
+    <joint name="lower_back" type="fixed">
+        <origin xyz=" -0.04 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="connector_back"/>
+        <child link="ass"/>
+    </joint>
+
+    <joint name="FR" type="revolute">
+        <origin xyz="0.12675 -0.032 0.0375" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="FR_Servo"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-1.0" upper="1.0" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="BR" type="revolute">
+        <origin xyz="-0.12675 -0.032 0.0375" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="BR_Servo"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-1.0" upper="1.0" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="FL" type="revolute">
+        <origin xyz="0.12675 0.032 0.0375" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="FL_Servo"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-1.0" upper="1.0" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="BL" type="revolute">
+        <origin xyz="-0.12675 0.032 0.0375" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="BL_Servo"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-1.0" upper="1.0" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="FR_leg" type="revolute">
+        <origin xyz="0.0 -0.06109 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="FR_Servo"/>
+        <child link="FR_upper_leg"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="BR_leg" type="revolute">
+        <origin xyz="0.0 -0.06109 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="BR_Servo"/>
+        <child link="BR_upper_leg"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="FL_leg" type="revolute">   
+        <origin xyz="0.0 0.06109 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="FL_Servo"/>
+        <child link="FL_upper_leg"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="BL_leg" type="revolute">
+        <origin xyz="0.0 0.06109 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="BL_Servo"/>
+        <child link="BL_upper_leg"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="FR_foot" type="revolute">
+        <origin xyz="0.0 -0.0232435 -0.10518" rpy="0.0 0.0 0.0"/>
+        <parent link="FR_upper_leg"/>
+        <child link="FR_lower_leg"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="BR_foot" type="revolute">
+        <origin xyz="0.0 -0.0232435 -0.10518" rpy="0.0 0.0 0.0"/>
+        <parent link="BR_upper_leg"/>
+        <child link="BR_lower_leg"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="FL_foot" type="revolute">
+        <origin xyz="0.0 0.0232435 -0.10518" rpy="0.0 0.0 0.0"/>
+        <parent link="FL_upper_leg"/>
+        <child link="FL_lower_leg"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="BL_foot" type="revolute">
+        <origin xyz="0.0 0.0232435 -0.10518" rpy="0.0 0.0 0.0"/>
+        <parent link="BL_upper_leg"/>
+        <child link="BL_lower_leg"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    </joint>
+
+    <joint name="FR_PAW" type="fixed">
+        <origin xyz="0.0 0.0 -0.108" rpy="0.0 0.0 0.0"/>
+        <parent link="FR_lower_leg"/>
+        <child link="FR_paw"/>
+    </joint>
+
+    <joint name="BR_PAW" type="fixed">
+        <origin xyz="0.0 0.0 -0.108" rpy="0.0 0.0 0.0"/>
+        <parent link="BR_lower_leg"/>
+        <child link="BR_paw"/>
+    </joint>
+
+    <joint name="FL_PAW" type="fixed">
+        <origin xyz="0.0 0.0 -0.108" rpy="0.0 0.0 0.0"/>
+        <parent link="FL_lower_leg"/>
+        <child link="FL_paw"/>
+    </joint>
+
+    <joint name="BL_PAW" type="fixed">
+        <origin xyz="0.0 0.0 -0.108" rpy="0.0 0.0 0.0"/>
+        <parent link="BL_lower_leg"/>
+        <child link="BL_paw"/>
+    </joint>
+
+
+
+
+</robot>
