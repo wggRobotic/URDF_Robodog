@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="Robodog">
+
+  <!-- Materials -->
+  <material name="red"><color rgba="1 0.0 0.0 1.0"/></material>
+  <material name="green"><color rgba="0.0 0.7 0.0 1.0"/></material>
+  <material name="blue"><color rgba="0.0 0.0 0.7 1.0"/></material>
+  <material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material>
+  <material name="white"><color rgba="1.0 1.0 1.0 1.0"/></material>
+
+  <!-- Macros for links -->
+  <xacro:macro name="box_link" params="name size xyz rpy color">
+    <link name="${name}">
+      <visual>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+        <geometry>
+          <box size="${size}"/>
+        </geometry>
+        <material name="${color}"/>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="sphere_link" params="name radius color">
+    <link name="${name}">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <sphere radius="${radius}"/>
+        </geometry>
+        <material name="${color}"/>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <!-- Macros for joints -->
+  <xacro:macro name="joint_fixed" params="name xyz rpy parent child">
+    <joint name="${name}" type="fixed">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="joint_revolute" params="name xyz rpy parent child axis lower upper effort velocity">
+    <joint name="${name}" type="revolute">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <axis xyz="${axis}"/>
+      <limit lower="${lower}" upper="${upper}" effort="${effort}" velocity="${velocity}"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Macro for a complete leg, now with explicit joint offsets -->
+  <xacro:macro name="robodog_leg" params="prefix servo_xyz servo_rpy upper_leg_xyz upper_leg_rpy lower_leg_xyz lower_leg_rpy paw_xyz paw_rpy servo_color upper_leg_color lower_leg_color paw_color joint0_xyz joint1_xyz joint2_xyz joint3_xyz">
+    <!-- Servo -->
+    <xacro:box_link name="${prefix}_Servo" size="0.0375 0.0527 0.0317" xyz="${servo_xyz}" rpy="${servo_rpy}" color="${servo_color}"/>
+    <!-- Upper leg -->
+    <xacro:box_link name="${prefix}_upper_leg" size="0.0297 0.037 0.1254" xyz="${upper_leg_xyz}" rpy="${upper_leg_rpy}" color="${upper_leg_color}"/>
+    <!-- Lower leg -->
+    <xacro:box_link name="${prefix}_lower_leg" size="0.021 0.009487 0.110" xyz="${lower_leg_xyz}" rpy="${lower_leg_rpy}" color="${lower_leg_color}"/>
+    <!-- Paw -->
+    <xacro:sphere_link name="${prefix}_paw" radius="0.015" color="${paw_color}"/>
+
+    <!-- Joints -->
+    <xacro:joint_revolute name="${prefix}" xyz="${joint0_xyz}" rpy="0.0 0.0 0.0" parent="base_link" child="${prefix}_Servo" axis="1.0 0.0 0.0" lower="-1.0" upper="1.0" effort="0.0" velocity="0.2"/>
+    <xacro:joint_revolute name="${prefix}_leg" xyz="${joint1_xyz}" rpy="0.0 0.0 0.0" parent="${prefix}_Servo" child="${prefix}_upper_leg" axis="0.0 1.0 0.0" lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    <xacro:joint_revolute name="${prefix}_foot" xyz="${joint2_xyz}" rpy="0.0 0.0 0.0" parent="${prefix}_upper_leg" child="${prefix}_lower_leg" axis="0.0 1.0 0.0" lower="-1.5" upper="1.5" effort="0.0" velocity="0.2"/>
+    <xacro:joint_fixed name="${prefix}_PAW" xyz="${joint3_xyz}" rpy="0.0 0.0 0.0" parent="${prefix}_lower_leg" child="${prefix}_paw"/>
+  </xacro:macro>
+
+  <!-- Body links -->
+  <xacro:box_link name="base_link"         size="0.216 0.114 0.075" xyz="0.0 0.0 0.0375" rpy="0.0 0.0 0.0" color="green"/>
+  <xacro:box_link name="connector_front"   size="0.045 0.02 0.075"  xyz="0.0 0.0 0.0"    rpy="0.0 0.0 0.0" color="green"/>
+  <xacro:box_link name="connector_back"    size="0.045 0.02 0.075"  xyz="0.0 0.0 0.0"    rpy="0.0 0.0 0.0" color="green"/>
+  <xacro:box_link name="head"              size="0.035 0.114 0.075" xyz="0.0 0.0 0.0"    rpy="0.0 0.0 0.0" color="green"/>
+  <xacro:box_link name="ass"               size="0.035 0.114 0.075" xyz="0.0 0.0 0.0"    rpy="0.0 0.0 0.0" color="green"/>
+
+  <!-- Body joints -->
+  <xacro:joint_fixed name="joint_body1" xyz="0.1305 0.0 0.0375" rpy="0.0 0.0 0.0" parent="base_link" child="connector_front"/>
+  <xacro:joint_fixed name="joint_body2" xyz="-0.1305 0.0 0.0375" rpy="0.0 0.0 0.0" parent="base_link" child="connector_back"/>
+  <xacro:joint_fixed name="neck" xyz="0.04 0.0 0.0" rpy="0.0 0.0 0.0" parent="connector_front" child="head"/>
+  <xacro:joint_fixed name="lower_back" xyz="-0.04 0.0 0.0" rpy="0.0 0.0 0.0" parent="connector_back" child="ass"/>
+
+  <!-- Legs using macro with explicit joint offsets -->
+  <xacro:robodog_leg
+    prefix="FR"
+    servo_xyz="0.0 -0.01624 0.0"
+    servo_rpy="0.0 0.0 0.0"
+    upper_leg_xyz="0.0 0.0 -0.05259"
+    upper_leg_rpy="0.0 0.0 0.0"
+    lower_leg_xyz="0.0 0.0 -0.053"
+    lower_leg_rpy="0.0 0.0 0.0"
+    paw_xyz="0.0 0.0 0.0"
+    paw_rpy="0.0 0.0 0.0"
+    servo_color="red"
+    upper_leg_color="blue"
+    lower_leg_color="black"
+    paw_color="white"
+    joint0_xyz="0.12675 -0.032 0.0375"
+    joint1_xyz="0.0 -0.06109 0.0"
+    joint2_xyz="0.0 -0.0232435 -0.10518"
+    joint3_xyz="0.0 0.0 -0.108"
+  />
+  <xacro:robodog_leg
+    prefix="BR"
+    servo_xyz="0.0 -0.01624 0.0"
+    servo_rpy="0.0 0.0 0.0"
+    upper_leg_xyz="0.0 0.0 -0.05259"
+    upper_leg_rpy="0.0 0.0 0.0"
+    lower_leg_xyz="0.0 0.0 -0.053"
+    lower_leg_rpy="0.0 0.0 0.0"
+    paw_xyz="0.0 0.0 0.0"
+    paw_rpy="0.0 0.0 0.0"
+    servo_color="red"
+    upper_leg_color="blue"
+    lower_leg_color="black"
+    paw_color="white"
+    joint0_xyz="-0.12675 -0.032 0.0375"
+    joint1_xyz="0.0 -0.06109 0.0"
+    joint2_xyz="0.0 -0.0232435 -0.10518"
+    joint3_xyz="0.0 0.0 -0.108"
+  />
+  <xacro:robodog_leg
+    prefix="FL"
+    servo_xyz="0.0 0.01624 0.0"
+    servo_rpy="0.0 0.0 0.0"
+    upper_leg_xyz="0.0 0.0 -0.05259"
+    upper_leg_rpy="0.0 0.0 0.0"
+    lower_leg_xyz="0.0 0.0 -0.053"
+    lower_leg_rpy="0.0 0.0 0.0"
+    paw_xyz="0.0 0.0 0.0"
+    paw_rpy="0.0 0.0 0.0"
+    servo_color="red"
+    upper_leg_color="blue"
+    lower_leg_color="black"
+    paw_color="white"
+    joint0_xyz="0.12675 0.032 0.0375"
+    joint1_xyz="0.0 0.06109 0.0"
+    joint2_xyz="0.0 0.0232435 -0.10518"
+    joint3_xyz="0.0 0.0 -0.108"
+  />
+  <xacro:robodog_leg
+    prefix="BL"
+    servo_xyz="0.0 0.01624 0.0"
+    servo_rpy="0.0 0.0 0.0"
+    upper_leg_xyz="0.0 0.0 -0.05259"
+    upper_leg_rpy="0.0 0.0 0.0"
+    lower_leg_xyz="0.0 0.0 -0.053"
+    lower_leg_rpy="0.0 0.0 0.0"
+    paw_xyz="0.0 0.0 0.0"
+    paw_rpy="0.0 0.0 0.0"
+    servo_color="red"
+    upper_leg_color="blue"
+    lower_leg_color="black"
+    paw_color="white"
+    joint0_xyz="-0.12675 0.032 0.0375"
+    joint1_xyz="0.0 0.06109 0.0"
+    joint2_xyz="0.0 0.0232435 -0.10518"
+    joint3_xyz="0.0 0.0 -0.108"
+  />
+
+</robot>
