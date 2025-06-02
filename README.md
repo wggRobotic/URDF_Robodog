@@ -14,7 +14,7 @@ Clone this repository into your ROS 2 workspace's `src` directory:
 
 ```sh
 cd ~/ros2_ws/src
-git clone <repository-url> urdf_robodog
+git clone https://github.com/wggRobotic/URDF_Robodog urdf_robodog
 ```
 Install dependencies and build the workspace:
 ```sh
@@ -28,7 +28,7 @@ source install/setup.bash
 To visualize the Robodog model in Rviz, use the provided launch file:
 
 ```sh
-ros2 launch urdf_robodog [display.launch.py](http://_vscodecontentref_/0)
+ros2 launch urdf_robodog display.launch.py
 ```
 
 This will start RViz with the Robodog model loaded and ready for inspection.
