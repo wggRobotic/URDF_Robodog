@@ -12,8 +12,8 @@ def generate_launch_description():
     default_rviz_config_path = PathJoinSubstitution([urdf_tutorial_path, 'rviz', 'urdf.rviz'])
 
     # These parameters are maintained for backwards compatibility
-    gui_arg = DeclareLaunchArgument(name='gui', default_value='true', choices=['true', 'false'],
-                                    description='Flag to enable joint_state_publisher_gui')
+    gui_arg = DeclareLaunchArgument(name='gui', default_value='false', choices=['true', 'false'],
+                                    description='Flag to enable joint_state_publisher_gui (set to false to disable)')
     ld.add_action(gui_arg)
     rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
                                      description='Absolute path to rviz config file')
