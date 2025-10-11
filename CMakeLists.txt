@@ -12,7 +12,7 @@ add_executable(joint_state_node src/joint_state_node.cpp)
 add_executable(marker_pub src/marker_publisher.cpp)
 
 ament_target_dependencies(joint_state_node rclcpp geometry_msgs trajectory_msgs sensor_msgs)
-ament_target_dependencies(marker_pub rclcpp visualization_msgs)
+ament_target_dependencies(marker_pub rclcpp visualization_msgs geometry_msgs)
 
 
 install(TARGETS

@@ -48,6 +48,12 @@ def generate_launch_description():
         name='joint_publisher',
         output='screen'
     )
+    marker_pub_node = Node(
+        package='urdf_robodog',
+        executable='marker_pub',
+        name='marker_pub',
+        output='screen'
+    )
 
     # Optional: direkt RViz starten
     rviz_node = Node(
@@ -61,5 +67,6 @@ def generate_launch_description():
         gui_arg,
         rsp_node,
         joint_pub_node,
+        marker_pub_node,
         rviz_node
     ])

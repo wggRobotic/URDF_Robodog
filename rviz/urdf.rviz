@@ -17,6 +17,18 @@ Visualization Manager:
     - Class: rviz_default_plugins/TF
       Name: TF
       Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: FootContactMarkers
+      Namespaces:
+        foot_contacts: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /visualization_marker_array
+      Value: true
   Global Options:
     Fixed Frame: base_link
   Tools:
