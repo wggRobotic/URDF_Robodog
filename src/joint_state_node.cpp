@@ -27,12 +27,20 @@ private:
         sensor_msgs::msg::JointState js;
         js.header.stamp = this->get_clock()->now();
         js.name = joint_names;
-        for (trajectory_msgs::msg::JointTrajectoryPoint point : msg->points){
-            for(double position : point.positions){
-                js.position.push_back(position);
-                js.effort.push_back(1.0);
-                js.velocity.push_back(2400/4095*M_PI_2); // ToDo: ADD servo sync
-            }
+        for (int i = 0;i<4; i++) {
+            js.position.push_back(msg->points.data()->positions[i*3]);
+            js.effort.push_back(1.0);
+            js.velocity.push_back(2400/4095*M_PI_2); // ToDo: ADD servo sync
+
+            js.position.push_back(msg->points.data()->positions[i*3+1]);
+            js.effort.push_back(1.0);
+            js.velocity.push_back(2400/4095*M_PI_2); // ToDo: ADD servo sync
+
+            js.position.push_back(msg->points.data()->positions[i*3+2]);
+            js.effort.push_back(1.0);
+            js.velocity.push_back(2400/4095*M_PI_2); // ToDo: ADD servo sync
+
+        
         }
         joint_state_pub_->publish(js);
         return;
