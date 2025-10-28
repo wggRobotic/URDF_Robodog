@@ -1,14 +1,15 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, Command
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 import os
 
 
 def generate_launch_description():
     # Default Pfade
     urdf_pkg = 'urdf_robodog'
-    urdf_file = 'urdf/Robodog.urdf'
+    urdf_file = 'urdf/Robodog_leg.urdf.xacro'
     rviz_file = 'rviz/urdf.rviz'
 
     urdf_path = os.path.join(
@@ -22,8 +23,11 @@ def generate_launch_description():
         rviz_file
     )
 
-    with open(urdf_path, 'r') as infp:
-        robot_desc = infp.read()
+    # Process xacro file to URDF
+    robot_description_content = ParameterValue(
+        Command(['xacro ', urdf_path]),
+        value_type=str
+    )
 
     # Launch arguments (optional)
     gui_arg = DeclareLaunchArgument(
@@ -37,7 +41,7 @@ def generate_launch_description():
     rsp_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        parameters=[{'robot_description': robot_desc}],
+        parameters=[{'robot_description': robot_description_content}],
         output='screen'
     )
 

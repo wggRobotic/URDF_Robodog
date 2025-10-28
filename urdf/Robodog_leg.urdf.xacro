@@ -6,8 +6,8 @@
   <!-- ========================= -->
   
   <!-- Leg segment lengths (easy to modify) -->
-  <xacro:property name="upper_leg_length" value="0.1254"/>
-  <xacro:property name="lower_leg_length" value="0.110"/>
+  <xacro:property name="upper_leg_length" value="0.1054"/>
+  <xacro:property name="lower_leg_length" value="0.165"/>
   
   <!-- Leg positioning relative to body -->
   <xacro:property name="leg_front_x" value="0.12675"/>

@@ -62,6 +62,7 @@ private:
       // Use the pose from the PoseArray if available, otherwise use a default pose
       if (i < msg->poses.size()) {
         marker.pose = msg->poses[i];
+        marker.pose.position.z += 0.0375;
       } else {
         // Default pose if not enough poses in the array
         marker.pose.position.x = 0.0;
